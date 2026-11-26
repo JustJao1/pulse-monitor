@@ -1,42 +1,24 @@
 # Pulse Monitor
 
-Service health and incident investigation workspace.
+Service health, latency history and incident investigation. The hosted checks use controlled sample responses rather than real external uptime measurements and require the page to remain active.
 
-[Live demonstration](https://portfolio-suite-jv.vercel.app/pulse) · [Developer portfolio](https://jv-software-portfolio.vercel.app/)
+[Live demo](https://portfolio-suite-jv.vercel.app/pulse) · [Portfolio](https://jv-software-portfolio.vercel.app/)
 
 **Owner and maintainer:** João Victor da Silva ([JustJao1](https://github.com/JustJao1)).
 
-## What it does
-
-HTTP health checks, latency history, monitor filters, incidents and export.
-
 ## Architecture
 
-A dedicated HTML/CSS/JavaScript workspace backed by Python request handling and SQLite domain operations. The hosted sandbox reconstructs temporary state from a browser-local snapshot; it is not a persistent multi-user database. External server-side requests are limited to controlled examples.
+HTML, CSS and JavaScript frontend with Python domain operations and temporary SQLite storage. Each browser stores its own snapshot; the hosted API reconstructs temporary state for each operation. The public demo is not a production multi-user service.
 
-## Run locally
+## Local setup
 
-Requires Python 3.11+.
+Python 3.11+. Create and activate a virtual environment, then run:
 
 ```sh
-python -m venv .venv
-# Activate the environment, then:
 python -m pip install -r requirements.txt
 python run.py
 ```
 
-Open http://127.0.0.1:8765/ in your browser. The local runner reproduces the bounded demo and binds to loopback only.
+Open http://127.0.0.1:8765/. The local runner is bound to loopback. Use `python -m unittest discover -s tests -v` for the included tests. The GitHub Actions workflow checks compilation and core behavior. Browser and external integration tests are separate.
 
-## Tests
-
-```sh
-python -m unittest discover -s tests -v
-```
-
-The tests cover core sandbox operations. Browser rendering and external dependencies need separate validation.
-
-## Current status
-
-Portfolio demonstration, not a production service. Hosted checks use controlled sample responses, not real external uptime measurements; checks require the demo page to remain active.
-
-See [ownership](OWNERSHIP.md) and [third-party notices](THIRD_PARTY_NOTICES.md).
+[Ownership](OWNERSHIP.md) · [Third-party notices](THIRD_PARTY_NOTICES.md)
