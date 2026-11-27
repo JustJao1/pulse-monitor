@@ -1,0 +1,32 @@
+{
+  "repository": "JustJao1/pulse-monitor",
+  "snapshot": "6b56894d481f321cefb7ea677e19d0064dfa1503",
+  "scope": "Histórico alcançável a partir do commit preservado, tal como retornado pela API GitHub; datas e autorias são metadados Git, não certificação jurídica.",
+  "complete": true,
+  "entries": [
+    {
+      "commit": "6b56894d481f321cefb7ea677e19d0064dfa1503",
+      "author_login": "JustJao1",
+      "author_date": "2026-11-27T00:28:10Z",
+      "committer_date": "2026-11-27T00:28:10Z",
+      "subject": "Use project-specific browser tab icon",
+      "signature_verified": false
+    },
+    {
+      "commit": "5f684aca8ea6a11aae13376dd212b2c410372bec",
+      "author_login": "JustJao1",
+      "author_date": "2026-11-26T18:07:18Z",
+      "committer_date": "2026-11-26T18:07:18Z",
+      "subject": "Publish standalone source and verification workflow",
+      "signature_verified": false
+    },
+    {
+      "commit": "f210a283cbeda72dc72545b5bbb5fa0c9928efb9",
+      "author_login": "JustJao1",
+      "author_date": "2026-11-26T18:03:30Z",
+      "committer_date": "2026-11-26T18:03:30Z",
+      "subject": "Initialize project documentation",
+      "signature_verified": false
+    }
+  ]
+}
