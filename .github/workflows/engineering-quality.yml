@@ -1,0 +1,36 @@
+name: Engineering quality
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt coverage==7.6.12
+      - run: python -m compileall -q api lib run.py
+      - name: Tests and measured coverage
+        run: |
+          mkdir -p quality-results
+          set -o pipefail
+          python -m coverage run --branch --source=api,lib,run -m unittest discover -s tests -v 2>&1 | tee quality-results/tests.txt
+      - name: Reports
+        if: always()
+        run: |
+          python -m coverage report | tee quality-results/coverage.txt
+          python -m coverage xml -o quality-results/coverage.xml
+          python -m coverage html -d quality-results/html
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quality-results
+          path: quality-results/
+          retention-days: 30
+      - run: docker compose up --build --wait
+      - run: curl --fail http://127.0.0.1:8765/api/workspace
+      - run: docker compose down
+        if: always()
